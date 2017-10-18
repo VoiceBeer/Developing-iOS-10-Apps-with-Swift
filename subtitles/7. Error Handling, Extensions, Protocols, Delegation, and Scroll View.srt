@@ -3980,18 +3980,22 @@ View Controller. Which is where we wanted to start.
 995
 00:53:06,951 --> 00:53:08,617
 Eventually we're gonna have other MVCs, but
+慢慢地我们会添加别的一些 MVC，但是
 
 996
 00:53:08,686 --> 00:53:12,454
 we'll start with this one. All right,
+我们会首先从这一个开始
 
 997
 00:53:12,523 --> 00:53:15,790
 back to my ImageViewController here. I said I wanted to
+好的，回到我们的这个 ImageViewController
 
 998
 00:53:15,859 --> 00:53:19,261
 build its UI in code. I know I need ImageView so
+我说过我想用代码来实现它的图形界面
 
 999
 00:53:19,330 --> 00:53:22,798
