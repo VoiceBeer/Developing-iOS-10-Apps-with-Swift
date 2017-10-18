@@ -3995,15 +3995,17 @@ back to my ImageViewController here. I said I wanted to
 998
 00:53:15,859 --> 00:53:19,261
 build its UI in code. I know I need ImageView so
-我说过我想用代码来实现它的图形界面
+我说过我想用代码来实现它的图形界面。我知道我这里是需要用到 ImageView 的所以
 
 999
 00:53:19,330 --> 00:53:22,798
 I'm just gonna start right off with private var imageView:
+我会先从这个私有变量 imageView 开始
 
 1000
 00:53:22,867 --> 00:53:26,168
 is a UIImageView. And in fact, I'm gonna
+
 
 1001
 00:53:26,236 --> 00:53:28,937
