@@ -4005,419 +4005,522 @@ I'm just gonna start right off with private var imageView:
 1000
 00:53:22,867 --> 00:53:26,168
 is a UIImageView. And in fact, I'm gonna
+它是一个 UIImageView。事实上，我将在这里创建它
 
-
-1001
+1001 // Q 个人理解翻译，不知正不正确
 00:53:26,236 --> 00:53:28,937
 create it right here. There's no reason not just to say,
+所以这里就不需要定义类型了
 
 1002
 00:53:29,006 --> 00:53:32,341
 this, it's going to create it with basically CGRect zero.
+这里会用基本的 CGRect.zero 来创建它
 
 1003
 00:53:32,409 --> 00:53:34,976
 This is just like saying frame: CGRect.zero,
+括号里这么写 (CGRect.zero) 
 
-1004
+1004 // Q 
 00:53:35,045 --> 00:53:38,246
 it's exactly the same as doing that, but you know we don't
+像之前的一样，但是你知道的
 
 1005
 00:53:38,315 --> 00:53:41,350
 need that extra code there. So now I've created this image
+我们其实不需要那些多余的代码。 那么现在我已经创建了这个 imageView
 
 1006
 00:53:41,418 --> 00:53:44,486
 view, it's in the upper left hand corner of whatever its
+它在父视图的左上角，并且无视父视图的位置
 
 1007
 00:53:44,554 --> 00:53:46,988
 super view is, it's not in any super view yet, and
+虽然目前它并不在任何父视图内
 
 1008
 00:53:47,057 --> 00:53:49,057
 it's of zero zero size. So it's not that useful, but
+而且它现在尺寸都是 0。所以目前为止它还没有那么有作用，但是
 
 1009
 00:53:49,126 --> 00:53:52,461
 of course, as soon as I set an image in it, I will resize it
+当然了，只要我在它里面放置了一张图像，我就会重新调整它的大小来
 
 1010
 00:53:52,529 --> 00:53:56,331
 to fit that image. And speaking of setting an image
+适合那个图像。另外说到在它里面设置一张图像
 
 1011
 00:53:56,400 --> 00:54:00,502
 in it, I imagine that when I set an image in my imageView,
+我猜当我在我的这个 imageView 中设置一张图像时
 
 1012
 00:54:00,571 --> 00:54:05,773
 I'm gonna need to do things like change the the frame,
+我会需要做一些像是改变 imageView 的边框
 
 1013
 00:54:05,842 --> 00:54:07,643
 of my imageView, and things like that.
+和其它一些诸如此类的事情
 
 1014
 00:54:07,712 --> 00:54:09,778
 So I'm gonna create a little private var here,
+所以这里我将创建一个小的私有变量
 
 1015
 00:54:09,846 --> 00:54:12,614
 called image, which is gonna be a UIImage and
+叫做 image，它将是一个 UIImage 类型的变量并且
 
 1016
 00:54:12,683 --> 00:54:15,650
 it's gonna be computed and it's gonna have a get and
+它将是一个计算变量还拥有一个 get 函数和一个 set 函数
 
 1017
 00:54:15,719 --> 00:54:18,653
 a set so that every time I get or set the image,
+所以每次我 get 或者 set 这个 image 变量时
 
-1018
+1018 // Q 后半句和下一句的前半句
 00:54:18,722 --> 00:54:22,524
 I can do other stuff. Okay, this is a really kind of
+我就能做些别的事情了。 好的，这是一个非常简单明了的方法来
 
 1019
 00:54:22,593 --> 00:54:26,228
 simple clean way to keep, you know to do ancillary things
+保证，( 停顿 )，你知道的
 
 1020
 00:54:26,297 --> 00:54:30,466
 when you're settings and getting some piece of data.
+当你在设置或者取得一些数据时候，做一些辅助性的事情
 
 1021
 00:54:30,534 --> 00:54:33,869
 So, for example, when I set this image right here,
+那么，举个例子，当我在这里设置这个 image 变量时，
 
 1022
 00:54:33,937 --> 00:54:38,840
 I'm going to set the imageView's image to be equal
+我将把 imageView 的 image 变量设置为
 
 1023
 00:54:38,909 --> 00:54:42,444
 to that new value of course. That's the primary thing if I
+那个新的赋值。 如果我想设置我的 image 变量
 
 1024
 00:54:42,513 --> 00:54:45,780
 wanna set my image, I need to set it in my imageView.
+那就将是主要的操作，我需要在我的 imageView 中设置它
 
 1025
 00:54:45,849 --> 00:54:49,817
 So this var right here is just the image that this imageView
+所以这里的这个变量其实就是这个展示中的 imageView 的 image 属性
 
 1026
-00:54:49,886 --> 00:54:51,920
+00:54:49,886 --> 00:54:51,999
 is showing. But then also like I said,
+但是也像我说的
 
 1027
-00:54:51,988 --> 00:54:56,959
+00:54:52,010 --> 00:54:56,959
 I want to set my imageView's size to fit this new image.
+我想让我的 imageView 的尺寸适应这个新的图像
 
 1028
 00:54:57,027 --> 00:54:59,695
 In fact, there happens to be a method called sizeToFit in
+事实上，在 imageView 也就是 UIImageView 类中刚好有一个方法叫做 sizeToFit 
 
 1029
 00:54:59,763 --> 00:55:02,531
 imageView that will cause it to size its frame to
+这个方法会让 imageView 的边框来适应
 
 1030
 00:55:02,599 --> 00:55:04,032
 fit whatever image is inside of it.
+内部的图像
 
 1031
 00:55:04,100 --> 00:55:07,669
 So it's nice that it had that this nice method for
+所以有这个方法对我来说真是太好啦
 
 1032
 00:55:07,738 --> 00:55:10,405
 me right here. If I control click on it, you can read it.
+如果我 control + click 它，你们就能看到了
 
 1033
 00:55:10,474 --> 00:55:12,040
 See that's what it says.
+看它都说了啥。
 
 1034
 00:55:12,109 --> 00:55:14,576
 And then how about getting it? Well, I'm just gonna return
+那么如何得到这个 image 变量呢？其实，这种情况
 
 1035
 00:55:14,645 --> 00:55:19,347
 the imageView's image in this case. Okay, so this
+只要写 return imageView.image 就行。
 
 1036
 00:55:19,416 --> 00:55:22,918
 is a var and it's computed, so there's no storage. And
+好了，这就是一个计算变量了，也就是说它没有任何储存空间
 
-1037
+1037 // Q 
 00:55:22,987 --> 00:55:26,555
 actually I'm doing the storage here in the imageView. Now,
+事实上我会在 imageView 中来创建储存空间
 
 1038
 00:55:26,623 --> 00:55:29,491
 this is giving me an error right here. And the error it's
+现在，这里有一个报错。 这个错误说
 
 1039
 00:55:29,560 --> 00:55:32,527
 giving me is that I need to unwrap this. Well,
+我需要解包它。 好吧
 
 1040
 00:55:32,596 --> 00:55:35,897
 that's because this image right here is an optional.
+这是因为这个 image 变量是一个可选值
 
 1041
 00:55:35,966 --> 00:55:38,066
 Cuz imageViews don't have to have an image,
+因为 imageView 们并不一定有一个 image 变量
 
 1042
 00:55:38,135 --> 00:55:40,468
 they could be empty at the time.
+它们可能是空的
 
 1043
 00:55:40,537 --> 00:55:43,471
 Now I could unwrap this here, but I'm thinking,
+现在我可以在这里解包它，但是我在想
 
 1044
 00:55:43,540 --> 00:55:47,709
 you know what? I want my UI to be able to be showing no image
+你知道吗？ 我想要我的 UI 界面即使在没有图像的时候也可以展现
 
 1045
 00:55:47,778 --> 00:55:50,345
 at some point. That's perfectly reasonable. So
+这非常合理。 所以
 
 1046
 00:55:50,414 --> 00:55:55,283
 instead, I'm gonna change this to be optional. So this
+取而代之的， 我要把这个改成可选值。 
 
 1047
 00:55:55,352 --> 00:55:58,987
 image var is optional, it can be nil. And when I do that I
+所以这个 image 变量是可选值了，它可以缺省。 并且当我这么做的时候
 
 1048
 00:55:59,056 --> 00:56:02,090
 wanna make sure that I can say imageView.image = newValue,
+我想确认这句定义没有问题
 
 1049
 00:56:02,158 --> 00:56:05,727
 is that gonna work if newValue is nil? Yes, it is because
+当 newValue 是缺省值时这句定义会正常运行吗？ 是的，这是因为
 
 1050
 00:56:05,796 --> 00:56:09,898
 we know that this imageView's image is itself an optional.
+我们知道这个 imageView 的 image 变量它本身就是可选的
 
 1051
 00:56:09,967 --> 00:56:12,434
 The imageView might have no image at this time.
+imageView 在此时可能还没有任何图像
 
 1052
 00:56:12,503 --> 00:56:17,238
 It's perfectly fine. Okay, everybody cool, understand
+非常好。 那么好吧，你们这些小家伙都懂了不，明白我都做了些什么没有？
 
 1053
 00:56:17,307 --> 00:56:20,608
 what I did there? It's just a code organization thing,
+其实就是些代码的结构的一些东西
 
 1054
 00:56:20,677 --> 00:56:23,478
 it just keeps me from having to, you know,
+它帮助我远离那些，你们知道的
 
 1055
 00:56:23,547 --> 00:56:26,414
 be resizing this fit somewhere else. Or to be putting
+在别的地方重新调整尺寸啊。 或者
 
 1056
 00:56:26,483 --> 00:56:28,950
 in some other part of my code that makes no sense. Here it
+放入一些没有意义的代码
 
 1057
 00:56:29,019 --> 00:56:31,086
 makes sense because here's where I'm setting my image.
+这里都是些有意义的代码因为这里是我设置图像的地方
 
 1058
 00:56:31,154 --> 00:56:36,191
 All right, let's now put this imageView into
+好了，现在把这个 imageView 变量通过代码
 
 1059
 00:56:36,259 --> 00:56:40,662
 our view hierarchy in code. I told you we were gonna do
+放到我们的视图层次结构中吧。 我告诉过你们我们会用代码来完成我们的 UI 界面的
 
 1060
 00:56:40,731 --> 00:56:43,832
 our UI with code. Let's do it. We're gonna say viewDidLoad is
+来干吧！(雾) viewDidLoad 是一个不错的选择
 
 1061
 00:56:43,901 --> 00:56:46,501
 a good place to do this because we know that by
+因为我们知道当 viewDidLoad 发生的时候
 
 1062
 00:56:46,570 --> 00:56:49,237
 the time viewDidLoad happens, we're fully initialized.
+我们就已经完全的初始化好了
 
 1063
 00:56:49,306 --> 00:56:51,005
 All our outlets are set.
+我们所有的 outlet 都设置好了
 
-1064
+1064 // Q segue 是要翻译成转场吗？
 00:56:51,074 --> 00:56:53,709
 We've been prepared if someone's segueing to us.
+如果有人要 segue 到我们的话也都准备好了
 
 1065
 00:56:53,777 --> 00:56:56,878
 We're in a really good state right now to add more things
+我们现在在一个非常酷的情况，可以添加更多东西到我们的 UI 界面中
 
 1066
 00:56:56,947 --> 00:56:59,814
 to our UI. And I'm gonna do that just by saying view,
+我将通过调用 view 来那么做
 
 1067
 00:56:59,883 --> 00:57:02,951
 remember that the special bar in View Controller which is
+还记得在视图控制器中那个特殊的
 
 1068
 00:57:03,019 --> 00:57:08,022
 the top level view. AddSubview my imageView,
+顶层视图的那个低栏吗。 view.addSubview(imageView)
 
 1069
 00:57:08,091 --> 00:57:11,292
 okay? So I'm just putting it on there.
+好不？ 我把它放在那里
 
 1070
 00:57:11,361 --> 00:57:16,498
 It'll either be zero zero size or if someone set my imageURL,
+它可能要么空尺寸要么如果有人设置了 imageURL 的话
 
 1071
 00:57:16,567 --> 00:57:20,569
 then it might be sized to fit or whatever.
+那么就可能是被定义尺寸了或者被适应了或者别的什么
 
 1072
 00:57:20,638 --> 00:57:23,772
 Okay, now what happens if someone sets my imageURL?
+好的，那么如果有人设置了我的 imageURL 的话会发生什么？
 
 1073
 00:57:23,841 --> 00:57:27,042
 I better set this image, okay? And we know a good way to do
+我最好要设置这个 image，对不？ 并且我们知道一个很好的方法
 
 1074
 00:57:27,110 --> 00:57:30,445
 that, right? So our property observer here on our model,
+对不？ 那么这里在我们的模型里加入属性观察者
 
 1075
 00:57:30,514 --> 00:57:33,715
 any time someone sets our model. First I'm gonna
+任何时候有人设置我们的模型的话都能触发。 首先我将
 
 1076
 00:57:33,784 --> 00:57:36,751
 actually clear out whatever image I have. And then I'm
+清除我现在的无论是什么的图像。 然后接下来
 
 1077
 00:57:36,820 --> 00:57:40,455
 gonna put the fetching of an image in another method.
+我将在另一个方法里取得一个图像
 
 1078
 00:57:40,523 --> 00:57:44,392
 Remember that this imageURL might be an Internet URL and
+记住这个 imageURL 可能是一个互联网的 URL 并且
 
 1079
 00:57:44,461 --> 00:57:47,595
 this might be a slow Internet, this might take a long time.
+可能网很慢，所以这会消耗很长的时间
 
 1080
 00:57:47,664 --> 00:57:51,065
 So I'm gonna put it all off into this other function here,
+因此我将把它放到这里的另一个函数内
 
 1081
 00:57:51,134 --> 00:57:53,368
 private function, fetchImage.
+私有函数， fetchImage()
 
 1082
 00:57:53,437 --> 00:57:56,338
 And it's gonna do the image fetching. So
+它会抓取那个图像
 
 1083
 00:57:56,407 --> 00:57:59,040
 how do we fetch an image from a URL, all right?
+那么我们怎么通过一个 URL 来抓取一个图像呢？
 
 1084
 00:57:59,109 --> 00:58:01,442
 It's actually remarkably easy.
+事实上很简单
 
 1085
 00:58:01,511 --> 00:58:03,378
 First, I'm gonna make sure that I have a URL to fetch.
+首先，我需要保证有一个用来抓取的 URL
 
 1086
 00:58:03,447 --> 00:58:09,717
 I'm gonna say, if I can let a url equal our imageURL,
+这里我会写，if let url = imageURL
 
 1087
 00:58:09,786 --> 00:58:15,223
 that's our model, okay? If I can get my imageURL there,
+也就是我们的模型，对不？ 如果那里我能得到那个我的 imageURL 的话
 
 1088
 00:58:15,292 --> 00:58:18,627
 then I'm going to let the contents of that URL, so I'm
+那么我就会把 URL 的内容
 
 1089
 00:58:18,695 --> 00:58:22,063
 gonna go out in the Internet and get the contents of it.
+我将从因特网上根据 URL 来获得对应的内容
 
 1090
 00:58:22,132 --> 00:58:28,637
 I'm gonna let that equal Data(contentsOf: url).
+也就是用 Data(contentsOf: url) 取得后赋值给 urlContents
 
 1091
 00:58:28,705 --> 00:58:31,673
 So data is that bag of bits, thing I told you about
+那么现在这个数据是一个装满比特的包，也就是我几节课前告诉你们过的东西
 
 1092
 00:58:31,741 --> 00:58:35,110
 a few lectures ago. And it has a really cool initializer
+并且它有一个非常酷的初始化器
 
 1093
 00:58:35,178 --> 00:58:38,513
 which is load up your bag of bits with whatever's at this
+也就是用无论什么 URL，它都会从网上装入你的这个比特包中
 
 1094
 00:58:38,582 --> 00:58:43,484
 URL on the Internet. Now, this has an error right here. And
+现在，这里有个错误
 
 1095
 00:58:43,553 --> 00:58:46,688
 the error is that this throws,
+错误是这里会抛出错误
 
 1096
 00:58:48,125 --> 00:58:51,059
 because that URL might not point to something, or
+以为 URL 可能不指向什么东西，或者
 
 1097
 00:58:51,128 --> 00:58:55,530
 it might be a malformed URL, or it might be a URL to some,
+它可能是一个异常的 URL，或者它可能是一个指向
 
 1098
 00:58:55,599 --> 00:58:57,733
 you know, bad data or something like that.
+你知道的，坏数据或者之类的东西的 URL
 
 1099
 00:58:57,801 --> 00:59:02,070
 So, if I look at this error here, it's complaining about
+那么如果我点这里的错误，它在抱怨
 
 1100
 00:59:02,138 --> 00:59:06,407
 the immutable. But it's also saying this call can throw,
+不可变的 urlContents。 但是它也说了这个定义可能会抛错
 
 1101
 00:59:06,476 --> 00:59:08,276
 but is not marked with a try and
+而且它没有用 try 来标记
 
 1102
 00:59:08,345 --> 00:59:12,614
 the error is not handled. Now here, someone's asking me to
+还有错误没有被处理的方式。 那么现在，有人让我
 
 1103
 00:59:12,683 --> 00:59:16,818
 show this imageURL. I suppose I could catch that error and
+展示这个 imageURL。
 
 1104
 00:59:16,887 --> 00:59:18,953
